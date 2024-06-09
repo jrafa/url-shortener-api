@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from rest_framework import generics, status
 from rest_framework.response import Response
 
@@ -38,3 +39,10 @@ class DecodeShortenedUrlToOriginalUrlView(generics.GenericAPIView):
         if URL_MAP.key_not_exists(key=short_code):
             return Response(status=status.HTTP_404_NOT_FOUND)
         return Response(data={"original_url": URL_MAP.get_value(key=short_code)}, status=status.HTTP_200_OK)
+
+
+class RedirectShortenedUrlToOriginalUrlView(generics.GenericAPIView):
+    def get(self, request, short_code, *args, **kwargs):
+        if URL_MAP.key_not_exists(key=short_code):
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        return redirect(to=URL_MAP.get_value(key=short_code))
