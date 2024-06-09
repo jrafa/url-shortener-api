@@ -17,9 +17,14 @@ Including another URLconf
 
 from django.urls import path
 
-from api.views import EncodeOriginalUrlToShortenedUrlView, DecodeShortenedUrlToOriginalUrlView
+from api.views import (
+    EncodeOriginalUrlToShortenedUrlView,
+    DecodeShortenedUrlToOriginalUrlView,
+    RedirectShortenedUrlToOriginalUrlView,
+)
 
 urlpatterns = [
+    path("<str:short_code>", RedirectShortenedUrlToOriginalUrlView.as_view(), name="redirect_to_original_url"),
     path("decode/", DecodeShortenedUrlToOriginalUrlView.as_view(), name="decode_to_original_url"),
     path("encode/", EncodeOriginalUrlToShortenedUrlView.as_view(), name="encode_to_shortened_url"),
 ]
