@@ -4,7 +4,7 @@ from api.helpers import generate_short_code, create_full_url
 from url_shortener.settings import DOMAIN_URL
 
 
-def test_generate_short_code_with_invalid_length():
+def test_generate_short_code_with_valid_length():
     length = 10
     result = generate_short_code(length=length)
 
