@@ -15,4 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-urlpatterns = []
+from django.urls import path
+
+from api.views import EncodeOriginalUrlToShortenedUrlView
+
+urlpatterns = [
+    path("encode/", EncodeOriginalUrlToShortenedUrlView.as_view(), name="encode_to_shortened_url"),
+]
