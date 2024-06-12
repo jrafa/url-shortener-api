@@ -64,7 +64,6 @@ def test_decode_shortened_url_to_original_url_with_not_found(api_client):
     assert response.status_code == status.HTTP_404_NOT_FOUND
 
 
-@pytest.mark.django_db
 def test_redirect_view_shortened_url_to_original_url_with_success(api_client):
     response_shortened_url = create_shortened_url(api_client=api_client, original_url="https://example.com").data
     short_code = response_shortened_url["shortened_url"].split("/")[-1]
